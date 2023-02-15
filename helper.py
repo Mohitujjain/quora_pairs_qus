@@ -20,7 +20,7 @@ def test_total_words(q1,q2):
     w2 = set(map(lambda word: word.lower().strip(), q2.split(" ")))
     return (len(w1) + len(w2))
 
-def test_fetch_token_features(q1, q2):
+def test_fetch_token_features(q1,q2):
     SAFE_DIV = 0.0001
 
     STOP_WORDS = stopwords.words("english")
@@ -66,7 +66,7 @@ def test_fetch_token_features(q1, q2):
 
     return token_features
 
-def test_fetch_length_features(q1, q2):
+def test_fetch_length_features(q1,q2):
     length_features = [0.0] * 3
 
     # Converting the Sentence into Tokens:
@@ -87,20 +87,20 @@ def test_fetch_length_features(q1, q2):
 
     return length_features
 
-def test_fetch_fuzzy_features(q1, q2):
+def test_fetch_fuzzy_features(q1,q2):
     fuzzy_features = [0.0] * 4
 
     # fuzz_ratio
-    fuzzy_features[0] = fuzz.QRatio(q1, q2)
+    fuzzy_features[0] = fuzz.QRatio(q1,q2)
 
     # fuzz_partial_ratio
-    fuzzy_features[1] = fuzz.partial_ratio(q1, q2)
+    fuzzy_features[1] = fuzz.partial_ratio(q1,q2)
 
     # token_sort_ratio
-    fuzzy_features[2] = fuzz.token_sort_ratio(q1, q2)
+    fuzzy_features[2] = fuzz.token_sort_ratio(q1,q2)
 
     # token_set_ratio
-    fuzzy_features[3] = fuzz.token_set_ratio(q1, q2)
+    fuzzy_features[3] = fuzz.token_set_ratio(q1,q2)
 
     return fuzzy_features
 
@@ -272,7 +272,7 @@ def preprocess(q):
 
     return q
 
-def query_point_creator(q1, q2):
+def query_point_creator(q1,q2):
     input_query = []
 
     # preprocess
@@ -286,21 +286,21 @@ def query_point_creator(q1, q2):
     input_query.append(len(q1.split(" ")))
     input_query.append(len(q2.split(" ")))
 
-    input_query.append(test_common_words(q1, q2))
-    input_query.append(test_total_words(q1, q2))
-    input_query.append(round(test_common_words(q1, q2) / test_total_words(q1, q2), 2))
+    input_query.append(test_common_words(q1,q2))
+    input_query.append(test_total_words(q1,q2))
+    input_query.append(round(test_common_words(q1,q2) / test_total_words(q1,q2), 2))
 
 
     # fetch token features
-    token_features = test_fetch_token_features(q1, q2)
+    token_features = test_fetch_token_features(q1,q2)
     input_query.extend(token_features)
 
     # fetch length based features
-    length_features = test_fetch_length_features(q1, q2)
+    length_features = test_fetch_length_features(q1,q2)
     input_query.extend(length_features)
 
     # fetch fuzzy features
-    fuzzy_features = test_fetch_fuzzy_features(q1, q2)
+    fuzzy_features = test_fetch_fuzzy_features(q1,q2)
     input_query.extend(fuzzy_features)
 
     # bow feature for q1
