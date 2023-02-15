@@ -23,7 +23,7 @@ def test_total_words(q1,q2):
 def test_fetch_token_features(q1,q2):
     SAFE_DIV = 0.0001
 
-    STOP_WORDS = stopwords.words("english")
+    STOP_WORDS = pickle.load(open('stopwords.pkl','rb')
 
     token_features = [0.0] * 8
 
@@ -63,8 +63,9 @@ def test_fetch_token_features(q1,q2):
 
     # First word of both question is same or not
     token_features[7] = int(q1_tokens[0] == q2_tokens[0])
-
+    
     return token_features
+
 
 def test_fetch_length_features(q1,q2):
     length_features = [0.0] * 3
@@ -87,6 +88,7 @@ def test_fetch_length_features(q1,q2):
 
     return length_features
 
+
 def test_fetch_fuzzy_features(q1,q2):
     fuzzy_features = [0.0] * 4
 
@@ -103,6 +105,7 @@ def test_fetch_fuzzy_features(q1,q2):
     fuzzy_features[3] = fuzz.token_set_ratio(q1,q2)
 
     return fuzzy_features
+
 
 def preprocess(q):
     q = str(q).lower().strip()
@@ -271,6 +274,7 @@ def preprocess(q):
     q = re.sub(pattern, ' ', q).strip()
 
     return q
+
 
 def query_point_creator(q1,q2):
     input_query = []
