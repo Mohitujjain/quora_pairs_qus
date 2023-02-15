@@ -10,8 +10,6 @@ from nltk.corpus import stopwords
 
 cv = pickle.load(open('cv.pkl','rb'))
 
-nltk.download()
-nltk.download('stopwords')
 
 
 def test_common_words(q1,q2):
@@ -28,7 +26,7 @@ def test_fetch_token_features(q1,q2):
     SAFE_DIV = 0.0001
     
     
-    STOP_WORDS = set(stopwords.words("english"))
+    STOP_WORDS = nltk.corpus.stopwords.words('english')
 
     token_features = [0.0] * 8
 
