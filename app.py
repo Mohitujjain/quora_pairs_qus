@@ -2,6 +2,7 @@ import streamlit as st
 import helper
 import nltk
 import pickle
+nltk.download()
 
 model = pickle.load(open('model.pkl','rb'))
 
