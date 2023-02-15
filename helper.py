@@ -7,7 +7,6 @@ import numpy as np
 import nltk
 from nltk.corpus import stopwords
 
-nltk.download()
 
 cv = pickle.load(open('cv.pkl','rb'))
 
@@ -24,7 +23,7 @@ def test_total_words(q1,q2):
 def test_fetch_token_features(q1,q2):
     SAFE_DIV = 0.0001
 
-    STOP_WORDS = stopwords.load(open('stopwords','rb'))
+    STOP_WORDS = stopwords.words("english")
 
     token_features = [0.0] * 8
 
