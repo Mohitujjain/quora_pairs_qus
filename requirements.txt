@@ -5,4 +5,3 @@ distance
 bs4
 nltk
 helper
-nltk.download()
