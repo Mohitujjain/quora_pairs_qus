@@ -23,7 +23,7 @@ def test_total_words(q1,q2):
 def test_fetch_token_features(q1,q2):
     SAFE_DIV = 0.0001
 
-    STOP_WORDS = stopwords.words("english")
+    STOP_WORDS = nltk.download("stopwords")
 
     token_features = [0.0] * 8
 
